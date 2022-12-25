@@ -1,7 +1,9 @@
 import { Head } from "$fresh/runtime.ts";
-import Counter from "../islands/Counter.tsx";
+import { useState } from "preact/hooks";
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+  
   return (
     <>
       <Head>
@@ -17,7 +19,11 @@ export default function Home() {
           Welcome to `fresh`. Try updating this message in the ./routes/index.tsx
           file, and refresh.
         </p>
-        <Counter start={3} />
+        <div class="flex gap-2 w-full">
+          <p class="flex-grow-1 font-bold text-xl">{count}</p>
+          <button onClick={() => setCount(count - 1)}>-1</button>
+          <button onClick={() => setCount(count + 1)}>+1</button>
+        </div>
       </div>
     </>
   );
